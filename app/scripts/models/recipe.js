@@ -1,15 +1,15 @@
 var Backbone = require('backbone');
 
 var Recipe = Backbone.Model.extend({
-
+  idAttribute: 'objectId'
 });
 
-var RecipeCollection = Backbone.Model.extend({
+var RecipeCollection = Backbone.Collection.extend({
   model: Recipe,
   url: 'https://thefraz.herokuapp.com/classes/Recipe'
 });
 
-module.exorts = {
+module.exports = {
   Recipe: Recipe,
   RecipeCollection: RecipeCollection
 };

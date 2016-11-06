@@ -6,6 +6,7 @@ var $ = require('jquery');
 //LOCAL IMPORTS
 var TemplateContainer = require('./template.jsx').TemplateContainer;
 
+
 $.ajaxSetup({
   beforeSend: function(xhr){
     xhr.setRequestHeader("X-Parse-Application-Id", 'ryansparseserver');
@@ -48,7 +49,7 @@ var RecipeList = React.createClass({
 
 
 var RecipeContainer = React.createClass({
-  $.post('https://thefraz.herokuapp.com/classes/Recipe')
+  // $.post('https://thefraz.herokuapp.com/classes/Recipe')
   render: function(){
     return (
       <TemplateContainer>
