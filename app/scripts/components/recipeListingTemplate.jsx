@@ -10,7 +10,7 @@ var RecipeListView = React.createClass({
         <nav className="navbar navbar-inverse">
           <ul className="nav nav-pills">
             <li role="presentation" className="active"><a href="#">Recipe Home</a></li>
-            <li role="presentation"><a href="#">New Recipe</a></li>
+            <li role="presentation"><a href="#/newrecipe/">New Recipe</a></li>
           </ul>
         </nav>
 

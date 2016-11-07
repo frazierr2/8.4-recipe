@@ -7,13 +7,14 @@ var Backbone = require('backbone');
 var RecipeContainer = require('./components/recipe.jsx').RecipeContainer;
 var LoginContainer = require('./components/login.jsx').LoginContainer;
 var RecipeContainerHome = require('./components/recipeListing.jsx').RecipeContainerHome;
-
+var NewRecipeContainer = require('./components/newRecipe.jsx').NewRecipeContainer;
 
 var AppRouter = Backbone.Router.extend({
  routes: {
    '': 'index',
    'listing/': 'listing',
-   'recipes/': 'recipes'
+   'recipes/': 'recipes',
+   'newrecipe/': 'newrecipe'
  },
 
 index: function(){
@@ -35,6 +36,13 @@ recipes: function(){
     React.createElement(RecipeContainer, {router: this}),
     document.getElementById('app')
   );
+},
+
+newrecipe: function(){
+  ReactDOM.render(
+    React.createElement(NewRecipeContainer,{router: this}),
+    document.getElementById('app')
+  )
 }
 
 });
