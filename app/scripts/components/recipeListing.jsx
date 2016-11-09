@@ -8,54 +8,47 @@ require('backbone-react-component');
 var RecipeListView = require('./recipeListingTemplate.jsx').RecipeListView;
 var RecipeCollection = require('../models/recipe.js').RecipeCollection;
 
-var RecipeList = React.createClass({
-  mixins: [Backbone.React.Component.mixin],
-  // getInitialState: function(){
-  //   var self = this;
-  //   var recipeView = new RecipeCollection();
-  //   console.log(recipeView);
-  //   recipeView.fetch().then(function(){
-  //     self.setState({collection: recipeView});
-  //   })
-  //   return {
-  //     collection: recipeView
-  //   }
-  //
-  // },
+var ListItem = React.createClass({
   render: function(){
-    var collection = this.getCollection();
-    var recipeList = collection.map(function(recipe){
-      // console.log(recipe);
-      return (<li key={recipe.get('objectId') || recipe.cid}>
-        {recipe.get('qty')}
-        {recipe.get('units')}
-        {recipe.get('name')}
+    var recipe = this.props.recipe;
+    return (
+      <h3><a href="#">{recipe.get('name')}</a></h3>
+    )
+  }
+});
 
-      </li>)
-    })
+var RecipeList = React.createClass({
+  render: function(){
+    var recipeList = this.props.collection.map(function(recipe){
+      return <ListItem key={recipe.cid} recipe={recipe}/>
+    });
     return (
       <ul>
         {recipeList}
-
       </ul>
     )
   }
 });
 var RecipeContainerHome = React.createClass({
   mixins: [Backbone.React.Component.mixin],
-  getDefaultProps: function(){
-    var collection = new RecipeCollection();
-    collection.fetch()
-    // console.log(collection);
+  getInitialState: function(){
     return {
-      collection: collection
+      collection: new RecipeCollection()
     };
+  },
+  componentWillMount: function(){
+    var self = this;
+    var collection = this.state.collection;
+    collection.fetch().then(function(){
+      self.setState({collection: collection});
+    });
+
   },
 
   render: function(){
     return (
       <RecipeListView>
-        <RecipeList />
+        <RecipeList collection={this.state.collection}/>
       </RecipeListView>
     )
   }

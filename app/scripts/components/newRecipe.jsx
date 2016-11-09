@@ -52,7 +52,7 @@ var NewRecipeContainer = React.createClass({
   // },
   handleSubmit: function(userData){
     $.post('https://thefraz.herokuapp.com/classes/Recipe', userData).then(function(response){
-      console.log(response);
+      // console.log(response);
     })
   },
 
@@ -98,137 +98,7 @@ var NewRecipeContainer = React.createClass({
             <label htmlFor="ingredient">Ingredient <br/>Used</label>
             <input type="text" className="form-control" id="ingredient" placeholder="Ingredient"/>
         </div>
-        <div className="form-group col-xs-3">
-          <select className="form-control" id="numOfServings">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-            <option>7</option>
-            <option>8</option>
-            <option>9</option>
-            <option>10</option>
-          </select>
-        </div>
-        <div className="form-group col-xs-3">
-          <select className="form-control" id="unitOfMeasure">
-            <option>Teaspoon</option>
-            <option>Tablespoon</option>
-            <option>Ounce</option>
-            <option>Cup</option>
-            <option>Pound</option>
-          </select>
-        </div>
-        <div className="form-group col-xs-6">
-          <input type="text" className="form-control" id="ingredient" placeholder="Ingredient"/>
-        </div>
-        <div className="form-group col-xs-3">
-          <select className="form-control" id="numOfServings">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-            <option>7</option>
-            <option>8</option>
-            <option>9</option>
-            <option>10</option>
-          </select>
-        </div>
-        <div className="form-group col-xs-3">
-          <select className="form-control" id="unitOfMeasure">
-            <option>Teaspoon</option>
-            <option>Tablespoon</option>
-            <option>Ounce</option>
-            <option>Cup</option>
-            <option>Pound</option>
-          </select>
-        </div>
-        <div className="form-group col-xs-6">
-          <input type="text" className="form-control" id="ingredient" placeholder="Ingredient"/>
-        </div>
-        <div className="form-group col-xs-3">
-          <select className="form-control" id="numOfServings">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-            <option>7</option>
-            <option>8</option>
-            <option>9</option>
-            <option>10</option>
-          </select>
-        </div>
-        <div className="form-group col-xs-3">
-          <select className="form-control" id="unitOfMeasure">
-            <option>Teaspoon</option>
-            <option>Tablespoon</option>
-            <option>Ounce</option>
-            <option>Cup</option>
-            <option>Pound</option>
-          </select>
-        </div>
-        <div className="form-group col-xs-6">
-          <input type="text" className="form-control" id="ingredient" placeholder="Ingredient"/>
-        </div>
-        <div className="form-group col-xs-3">
-          <select className="form-control" id="numOfServings">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-            <option>7</option>
-            <option>8</option>
-            <option>9</option>
-            <option>10</option>
-          </select>
-        </div>
-        <div className="form-group col-xs-3">
-          <select className="form-control" id="unitOfMeasure">
-            <option>Teaspoon</option>
-            <option>Tablespoon</option>
-            <option>Ounce</option>
-            <option>Cup</option>
-            <option>Pound</option>
-          </select>
-        </div>
-        <div className="form-group col-xs-6">
-          <input type="text" className="form-control" id="ingredient" placeholder="Ingredient"/>
-        </div>
-        <div className="form-group col-xs-3">
-          <select className="form-control" id="numOfServings">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-            <option>7</option>
-            <option>8</option>
-            <option>9</option>
-            <option>10</option>
-          </select>
-        </div>
-        <div className="form-group col-xs-3">
-          <select className="form-control" id="unitOfMeasure">
-            <option>Teaspoon</option>
-            <option>Tablespoon</option>
-            <option>Ounce</option>
-            <option>Cup</option>
-            <option>Pound</option>
-          </select>
-        </div>
-        <div className="form-group col-xs-6">
-          <input type="text" className="form-control" id="ingredient" placeholder="Ingredient"/>
-        </div>
-        <button type="submit" className="btn btn-primary btn-lg btn-block">Save New Recipe</button>
+
           </div>
         </form>
         </div>

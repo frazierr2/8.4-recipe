@@ -4,7 +4,7 @@ var Backbone = require('backbone');
 
 
 //LOCAL IMPORTS
-var RecipeContainer = require('./components/recipe.jsx').RecipeContainer;
+var RecipeContainer = require('./components/adjustRecipe.jsx').RecipeContainer;
 var LoginContainer = require('./components/login.jsx').LoginContainer;
 var RecipeContainerHome = require('./components/recipeListing.jsx').RecipeContainerHome;
 var NewRecipeContainer = require('./components/newRecipe.jsx').NewRecipeContainer;
