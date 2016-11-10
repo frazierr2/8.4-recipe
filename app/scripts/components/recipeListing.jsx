@@ -12,7 +12,7 @@ var ListItem = React.createClass({
   render: function(){
     var recipe = this.props.recipe;
     return (
-      <h3><a href="#">{recipe.get('name')}</a></h3>
+      <h3><a href={'#recipes/' + this.props.recipe.get('objectId') + '/edit/'}>{recipe.get('name')}</a></h3>
     )
   }
 });

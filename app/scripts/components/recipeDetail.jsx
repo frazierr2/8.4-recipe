@@ -9,9 +9,9 @@ var RecipeHeading = React.createClass({
   render: function(){
     return (
       <div>
-        <h1>{this.props.recipe.get('name')}</h1>
-        <a href={'#recipes/' + this.props.recipe.get('objectId') + '/edit/'}>Edit</a>
-      </div>
+         <h1>{this.props.recipe.get('name')}</h1>
+         <a href={'#recipes/' + this.props.recipe.get('objectId') + '/edit/'}></a>
+       </div>
     );
   }
 });
@@ -19,27 +19,31 @@ var RecipeHeading = React.createClass({
 var RecipeDetailContainer = React.createClass({
   getInitialState: function(){
     return {
+
       recipe: new models.Recipe()
     }
   },
 
   componentWillMount: function(){
-        console.log('recipe', this.state.recipe);
+    // console.log(this.state.recipe);
     var recipe = this.state.recipe,
      recipeId = this.props.recipeId;
 
     if(!recipeId){
       return;
     }
-
+    // console.log(recipeId);
     recipe.set('objectId', recipeId);
-    recipe.fetch().then(() => {
+    recipe.fetch().then((data) => {
+      // console.log(data);
+      // console.warn(recipe);
       this.setState({recipe: recipe});
     });
   },
 
 
   render: function(){
+
     return (
       <RecipeListView>
         <RecipeHeading recipe={this.state.recipe}/>

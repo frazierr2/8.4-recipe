@@ -18,13 +18,13 @@ $.ajaxSetup({
 var RecipeAdjust = React.createClass({
   getInitialState: function(){
     return {
-      qty: 1
+      qty: ''
     };
   },
 
-  componentWillReceiveProps: function(nextProps){
-    this.setState({qty: nextProps.qty});
-  },
+  // componentWillReceiveProps: function(nextProps){
+  //   this.setState({qty: nextProps.qty});
+  // },
 
   handleQty: function(e){
     this.setState({qty: e.target.value});
@@ -57,15 +57,19 @@ var RecipeAdjust = React.createClass({
 
 
 var RecipeList = React.createClass({
+
   render: function(){
+    // var ingredients = this.props.ingredients;
+    // console.log(this.props);
     var factor = this.props.factor;
     var ingredientListItems = this.props.ingredients.map(function(ingredient){
-      var adjustedAmount = ingredent.get('qty') * factor;
+      // console.log(ingredient);
+      var adjustedAmount = ingredient.qty * factor;
       var amount = parseInt(adjustedAmount) === adjustedAmount ? adjustedAmount : adjustedAmount.toFixed(2);
 
       return (
         <li key={ingredient.cid} className="list-group-item">
-          <input type="checkbox" /> {amount} {ingredient.get('units')} {ingredient.get('item')}
+          <input type="checkbox" /> {amount} {ingredient.units} {ingredient.item}
         </li>
       )
     });
@@ -94,7 +98,6 @@ var RecipeAdjustContainer = React.createClass({
 
   adjustQtys: function(newServings){
     var recipe = this.props.recipe;
-
     var newFactor = (newServings / recipe.get('servings')) || 1;
       // console.log(ingredients);
     this.setState({servings: newServings, factor: newFactor});
@@ -102,7 +105,7 @@ var RecipeAdjustContainer = React.createClass({
   },
 
   render: function(){
-    // console.log(this.props.recipe);
+    // console.log(this.props.recipe.get('ingredients'));
     var ingredients = this.props.recipe.get('ingredients');
 
     return (
