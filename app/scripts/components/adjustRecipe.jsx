@@ -22,9 +22,9 @@ var RecipeAdjust = React.createClass({
     };
   },
 
-  // componentWillReceiveProps: function(nextProps){
-  //   this.setState({qty: nextProps.qty});
-  // },
+  componentWillReceiveProps: function(nextProps){
+    this.setState({qty: nextProps.qty});
+  },
 
   handleQty: function(e){
     this.setState({qty: e.target.value});
@@ -39,7 +39,7 @@ var RecipeAdjust = React.createClass({
   render: function(){
     return (
       <div className="row">
-      <div className="col-md-6 col-md-offset-3 well serving-row">
+      <div className="col-md-6 col-md-offset-1 well serving-row">
         <form onSubmit={this.handleSubmit} className="form-inline">
           <div className="form-group serving-form col-md-6">
               <label htmlFor="servings"><strong>servings</strong></label>
@@ -68,14 +68,16 @@ var RecipeList = React.createClass({
       var amount = parseInt(adjustedAmount) === adjustedAmount ? adjustedAmount : adjustedAmount.toFixed(2);
 
       return (
-        <li key={ingredient.cid} className="list-group-item">
+
+        <li key={ingredient.item} className="list-group-item">
           <input type="checkbox" /> {amount} {ingredient.units} {ingredient.item}
         </li>
+
       )
     });
     return (
       <div className="row ">
-        <ul className="col-md-6 col-md-offset-3 well">
+        <ul className="col-md-6 col-md-offset-1 well">
           {ingredientListItems}
         </ul>
       </div>
