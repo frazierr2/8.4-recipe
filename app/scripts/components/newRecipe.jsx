@@ -4,25 +4,34 @@ var Backbone = require('backbone');
 var $ = require('jquery');
 require('backbone-react-component');
 
+var models = require('../models/recipe.js');
 
-var NewRecipeContainer = React.createClass({
+
+var RecipeForm = React.createClass({
   getInitialState: function(){
     var name = '';
     var quantity = '';
     var units = '';
-    var ingredient = '';
+    var item = '';
+    var servings = ''
 
     return {
       name: name,
+      servings: servings,
       quantity: quantity,
       units: units,
-      ingredient: ingredient
+      item: item
     }
   },
 
   setRecipeName: function(e){
     var recipeName = e.target.value;
     this.setState({name: recipeName});
+  },
+
+  setServings: function(e){
+    var servingNumber = e.target.value;
+    this.setState({servings: servingNumber})
   },
 
   setRecipeQty: function(e){
@@ -35,43 +44,51 @@ var NewRecipeContainer = React.createClass({
     this.setState({units: recipeUnit});
   },
 
-  setRecipeName: function(e){
+  setRecipeItem: function(e){
     var recipeIngredient = e.target.value;
-    this.setState({ingredient: recipeIngredient});
+    this.setState({item: recipeIngredient});
   },
-  // setRecipe: function(e){
-  //   e.preventDefault();
-  //
-  //   var userData = {
-  //     name: this.state.name,
-  //     quantity: this.state.quantity,
-  //     units: this.state.units,
-  //     ingredient: this.state.ingredient
-  //   };
-  //   this.state.setRecipe(userData);
-  // },
-  handleSubmit: function(userData){
-    $.post('https://thefraz.herokuapp.com/classes/Recipe', userData).then(function(response){
-      // console.log(response);
-    })
+
+
+  handleSubmit: function(e){
+    e. preventDefault();
+    // console.log(this.state);
+    var newRecipe = {
+      name: this.state.name,
+      servings: parseInt(this.state.servings),
+      ingredients: [{
+        'qty': parseInt(this.state.quantity),
+        'unit': this.state.units,
+        'item': this.state.item
+      }]
+    };
+
+    this.props.handleSubmit(newRecipe);
   },
+
+
 
   render: function(){
     var self = this;
     return(
       <div className="container">
         <div className="row">
-          <form onSubmit={self.handleSubmit}>
+          <form onSubmit={self.handleSubmit} >
             <h2 className="text-center">New Recipe</h2>
           <div className="col-md-6 col-md-offset-3">
             <div className="form-group">
             <label htmlFor="recipeName">Recipe Name</label>
             <input onChange={self.setRecipeName} type="text" className="form-control" id="recipeName" placeholder="Recipe Name"/>
             </div>
-            <h2 className="text-center">Ingredients</h2>
+            <div className="form-group">
+            <label htmlFor="servingNumber">Number of Servings</label>
+            <input onChange={self.setServings} type="text" className="form-control" id="servingNumber" placeholder="Number of Servings"/>
+            </div>
+            <h2 className="text-center">Ingredients<button type="button" className="btn btn-danger btn-sm add-new">Add New Ingredient</button></h2>
             <div className="form-group col-xs-3">
             <label htmlFor="numOfServings">Number of Units</label>
-            <select className="form-control" id="numOfServings">
+            <select onChange={self.setRecipeQty} className="form-control" id="numOfServings">
+              <option></option>
               <option>1</option>
               <option>2</option>
               <option>3</option>
@@ -86,7 +103,8 @@ var NewRecipeContainer = React.createClass({
           </div>
           <div className="form-group col-xs-3">
           <label htmlFor="unitOfMeasure">Units of Measurement</label>
-          <select className="form-control" id="unitOfMeasure">
+          <select onChange={self.setRecipeUnit} className="form-control" id="unitOfMeasure">
+            <option></option>
             <option>Teaspoon</option>
             <option>Tablespoon</option>
             <option>Ounce</option>
@@ -96,10 +114,13 @@ var NewRecipeContainer = React.createClass({
         </div>
         <div className="form-group col-xs-6">
             <label htmlFor="ingredient">Ingredient <br/>Used</label>
-            <input type="text" className="form-control" id="ingredient" placeholder="Ingredient"/>
+            <input onChange={self.setRecipeItem} type="text" className="form-control" id="ingredient" placeholder="Ingredient"/>
+        </div>
+        <div className="submit-new">
+        <button type="submit" className="btn btn-primary btn-lg submit-new">Save Recipe</button>
+        </div>
         </div>
 
-          </div>
         </form>
         </div>
       </div>
@@ -107,6 +128,32 @@ var NewRecipeContainer = React.createClass({
   }
 });
 
+
+
+var NewRecipeContainer = React.createClass({
+  getInitialState: function(){
+    return{
+      recipe: new models.Recipe()
+    };
+  },
+
+    handleSubmit: function(newRecipe){
+      // console.log(newRecipe);
+      // console.log(this.state.recipe);
+    this.state.recipe.save(newRecipe);
+
+  //     recipe.save().then(() => {
+  //       Backbone.history.navigate('listing/', {trigger: true});
+  // });
+},
+  render: function(){
+    return(
+      <div>
+        <RecipeForm  handleSubmit={this.handleSubmit}/>
+      </div>
+    )
+  }
+});
 module.exports = {
   NewRecipeContainer: NewRecipeContainer
 }
