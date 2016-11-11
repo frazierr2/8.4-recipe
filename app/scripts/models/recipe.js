@@ -1,14 +1,5 @@
 var Backbone = require('backbone');
 
-// var ParseModel = Backbone.Model.extend({
-//   idAttribute: 'objectId',
-//   save: function(key, val, options){
-//     delete this.attributes.createdAt;
-//     delete this.attributes.updatedAt;
-//
-//     return Backbone.Model.prototype.save.apply(this, arguments);
-//   }
-// });
 
 var Ingredient = Backbone.Model.extend({
   defaults: {
@@ -26,9 +17,15 @@ var IngredientCollection = Backbone.Collection.extend({
 var Recipe = Backbone.Model.extend({
   idAttribute: 'objectId',
   defaults: {
-    ingredients: []
+    ingredients: new IngredientCollection()
   },
   urlRoot: 'https://thefraz.herokuapp.com/classes/Recipe',
+  // save: function(key, val, options){
+  //  // Convert ingredients collection to array for parse
+  //  this.set('ingredients', this.get('ingredients').toJSON());
+  //
+  //  return Model.prototype.save.apply(this, arguments);
+// }
 
 });
 
